@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SueldoBruto.SueldoPage"
+             Title="Calculadora Fiscal">
+
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#002C5F" Offset="0.1" />
+            <GradientStop Color="#004A99" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <HorizontalStackLayout HorizontalOptions="End" Spacing="5">
+                <Label Text="🌐" VerticalOptions="Center" TextColor="White"/>
+                <Picker x:Name="LanguagePicker" Title="Idioma" WidthRequest="110" 
+                        TextColor="White" TitleColor="White"
+                        SelectedIndexChanged="OnLanguageChanged">
+                    <Picker.Items>
+                        <x:String>Español</x:String>
+                        <x:String>Galego</x:String>
+                    </Picker.Items>
+                </Picker>
+            </HorizontalStackLayout>
+
+            <Label x:Name="LblTitle" Text="Calculadora sueldo neto" FontSize="26" FontAttributes="Bold" 
+                   HorizontalOptions="Center" TextColor="White" Margin="0,10" />
+
+            <Frame CornerRadius="15" Padding="15" BackgroundColor="White" HasShadow="True" BorderColor="Transparent">
+                <VerticalStackLayout>
+                    <Label x:Name="LblSueldoBruto" Text="SUELDO BRUTO ANUAL" HorizontalOptions="Center" 
+                           FontSize="12" FontAttributes="Bold" TextColor="#002C5F" />
+                    <Picker x:Name="SueldoPicker" SelectedIndexChanged="OnParametroCambiado"
+                            HorizontalTextAlignment="Center" FontSize="26" FontAttributes="Bold" TextColor="#002C5F" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <VerticalStackLayout Grid.Column="0">
+                    <Label x:Name="LblComunidad" Text="Comunidad" FontAttributes="Bold" TextColor="White" FontSize="13" Margin="5,0"/>
+                    <Frame CornerRadius="10" Padding="2" BackgroundColor="White" BorderColor="Transparent">
+                        <Picker x:Name="ComunidadPicker" SelectedIndexChanged="OnParametroCambiado" TextColor="#002C5F" />
+                    </Frame>
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="1">
+                    <Label x:Name="LblPagas" Text="Pagas" FontAttributes="Bold" TextColor="White" FontSize="13" Margin="5,0"/>
+                    <Frame CornerRadius="10" Padding="2" BackgroundColor="White" BorderColor="Transparent">
+                        <Picker x:Name="PagasPicker" SelectedIndexChanged="OnParametroCambiado" TextColor="#002C5F">
+                            <Picker.Items>
+                                <x:String>12 Pagas</x:String>
+                                <x:String>14 Pagas</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </Frame>
+                </VerticalStackLayout>
+            </Grid>
+
+            <Frame CornerRadius="15" Padding="15" BackgroundColor="White" BorderColor="Transparent">
+                <VerticalStackLayout Spacing="8">
+                    <Label x:Name="LblGastos" Text="GASTOS MENSUALES" FontAttributes="Bold" FontSize="12" TextColor="#002C5F" />
+                    <Entry x:Name="AlquilerEntry" Placeholder="Alquiler/Hipoteca (€)" Keyboard="Numeric" 
+                           TextChanged="OnParametroCambiado" TextColor="#002C5F" PlaceholderColor="#99002C5F" />
+                    <Entry x:Name="TransporteEntry" Placeholder="Combustible + AP-9 (€)" Keyboard="Numeric" 
+                           TextChanged="OnParametroCambiado" TextColor="#002C5F" PlaceholderColor="#99002C5F" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame x:Name="ResultFrame" BackgroundColor="#E6FFFFFF" CornerRadius="20" Padding="20" BorderColor="Transparent">
+                <VerticalStackLayout Spacing="5">
+                    <Label x:Name="NetoLabel" Text="-" TextColor="#002C5F" FontSize="36" FontAttributes="Bold" HorizontalOptions="Center" />
+                    <Label x:Name="RetencionLabel" Text="-" TextColor="#555" FontSize="14" HorizontalOptions="Center" />
+                    <BoxView HeightRequest="1" Color="#002C5F" Opacity="0.1" Margin="0,10" />
+                    <Label x:Name="DisponibleLabel" Text="-" TextColor="#002C5F" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
